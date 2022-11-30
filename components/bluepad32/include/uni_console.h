@@ -18,7 +18,13 @@ limitations under the License.
 
 #ifndef UNI_CONSOLE_H
 #define UNI_CONSOLE_H
-
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 void uni_console_init(void);
+#ifdef __cplusplus
+}
+#endif
 
 #endif  // UNI_CONSOLE_H

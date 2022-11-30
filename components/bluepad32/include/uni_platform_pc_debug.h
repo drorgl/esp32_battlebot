@@ -21,6 +21,13 @@ limitations under the License.
 
 #include "uni_platform.h"
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 struct uni_platform* uni_platform_pc_debug_create(void);
+#ifdef __cplusplus
+}
+#endif
 
 #endif  // UNI_PLATFORM_PC_DEBUG_H

@@ -18,7 +18,13 @@ limitations under the License.
 
 #ifndef UNI_ESP32_H
 #define UNI_ESP32_H
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+    void uni_esp32_enable_uart_output(int enabled);
+#ifdef __cplusplus
+}
+#endif
 
-void uni_esp32_enable_uart_output(int enabled);
-
-#endif  // UNI_ESP32_H
+#endif // UNI_ESP32_H

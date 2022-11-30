@@ -52,8 +52,15 @@ typedef union {
     char* str;
 } uni_property_value_t;
 
+#ifdef __cplusplus
+extern "C"
+{
+#endif
 void uni_property_init(void);
 void uni_property_set(const char* key, uni_property_type_t type, uni_property_value_t value);
 uni_property_value_t uni_property_get(const char* key, uni_property_type_t type, uni_property_value_t def);
+#ifdef __cplusplus
+}
+#endif
 
 #endif  // UNI_PROPERTY_H
