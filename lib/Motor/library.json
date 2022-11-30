@@ -1,0 +1,12 @@
+{
+    "$schema": "https://gist.githubusercontent.com/drorgl/28ab5cf4843acc61c33ac31146ed1102/raw/70d687dbaddf9a631fdf538338787b9526380041/library_json_schema.json",
+    "name": "AFMotor",
+    "description": "AF Motor",
+    "build": {
+        "srcDir": "./",
+        "srcFilter":[
+            "+<*.cpp>"
+        ]
+    }
+
+}

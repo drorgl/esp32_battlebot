@@ -10,7 +10,7 @@
  *    or DC motor with PWM on motor output M1, you can use the PWM output on pin
  *    9 or pin 10 (normally use for RC servo outputs on Arduino, not needed for 
  *    RC servo outputs on PIC32) to drive the PWM input for M1 by simply putting
- *    a jumber from pin 9 to pin 11 or pin 10 to pin 11. Then uncomment one of the
+ *    a jumper from pin 9 to pin 11 or pin 10 to pin 11. Then uncomment one of the
  *    two #defines below to activate the PWM on either pin 9 or pin 10. You will
  *    then have a fully functional microstepping for 2 stepper motors, or four
  *    DC motor outputs with PWM.
@@ -28,6 +28,20 @@
 
 #ifndef _AFMotor_h_
 #define _AFMotor_h_
+
+
+// Arduino pin names for interface to 74HCT595 latch
+#define MOTORLATCH 12
+#define MOTORCLK 4
+#define MOTORENABLE 7
+#define MOTORDATA 8
+
+#define PWM1A 8
+#define PWM1B 10
+#define PWM2A 11
+#define PWM0A 6
+#define PWM0B 5
+#define PWM2B 10
 
 #include <inttypes.h>
 #if defined(__AVR__)
@@ -89,6 +103,38 @@
     #define STEPPER1_PWM_RATE   MOTOR12_39KHZ
     #define STEPPER2_PWM_RATE   MOTOR34_39KHZ
     
+#elif defined(ESP_PLATFORM)
+#include "driver/gpio.h"
+#undef MOTORLATCH 
+#undef MOTORCLK
+#undef MOTORENABLE
+#undef MOTORDATA
+
+#define MOTORLATCH GPIO_NUM_19
+#define MOTORCLK GPIO_NUM_17
+#define MOTORENABLE GPIO_NUM_14
+#define MOTORDATA GPIO_NUM_12
+
+#undef PWM1A 
+#undef PWM1B 
+#undef PWM2A 
+#undef PWM0A 
+#undef PWM0B 
+#undef PWM2B 
+
+#define PWM1A GPIO_NUM_13
+#define PWM1B GPIO_NUM_5
+#define PWM2A GPIO_NUM_23
+#define PWM0A GPIO_NUM_27
+#define PWM0B GPIO_NUM_16
+#define PWM2B GPIO_NUM_25
+
+#define DC_MOTOR_PWM_RATE 0
+#define STEPPER1_PWM_RATE 0
+#define STEPPER2_PWM_RATE 0
+
+#define MICROSTEPS 8
+
 #endif
 
 // Bit positions in the 74HCT595 shift register output
@@ -131,11 +177,21 @@
 #define SER_PORT PORTB
 */
 
-// Arduino pin names for interface to 74HCT595 latch
-#define MOTORLATCH 12
-#define MOTORCLK 4
-#define MOTORENABLE 7
-#define MOTORDATA 8
+
+
+
+/**
+ * DIR_SER - GPIO12
+ * PWM1A - GPIO13 - servo2
+ * PWM1B - GPIO5 - servo1
+ * PWM2A - GPIO23 - dc1
+ * DIR_LATCH - GPIO19
+ * DIR_EN - GPIO14
+ * PWM0A - GPIO27 - dc4
+ * PWM0B - GPIO16 - dc3
+ * DIR_CLK - GPIO17
+ * PWM2B - GPIO25 - dc2
+ */
 
 class AFMotorController
 {
