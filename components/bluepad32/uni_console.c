@@ -328,9 +328,6 @@ void uni_console_init(void) {
 #endif  // CONFIG_BLUEPAD32_CONSOLE_NVS_COMMAND_ENABLE
 
     register_bluepad32();
-#if CONFIG_BLUEPAD32_PLATFORM_UNIJOYSTICLE
-    uni_platform_unijoysticle_register_cmds();
-#endif  // CONFIG_BLUEPAD32_PLATFORM_UNIJOYSTICLE
 
     ESP_ERROR_CHECK(esp_console_new_repl_uart(&uart_config, &repl_config, &repl));
 

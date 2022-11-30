@@ -15,7 +15,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 ****************************************************************************/
-
+#if 0
 #include "uni_platform.h"
 
 #include "sdkconfig.h"
@@ -56,3 +56,4 @@ void uni_platform_init(int argc, const char** argv) {
 struct uni_platform* uni_get_platform(void) {
     return _platform;
 }
+#endif
