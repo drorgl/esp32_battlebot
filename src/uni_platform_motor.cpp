@@ -111,6 +111,7 @@ static void motor_on_init_complete(void)
 static void motor_on_device_connected(uni_hid_device_t *d)
 {
     logi("motor: device connected: %p\n", d);
+    uni_bluetooth_enable_new_connections_safe(false);
 }
 
 static void motor_on_device_disconnected(uni_hid_device_t *d)
@@ -124,6 +125,8 @@ static void motor_on_device_disconnected(uni_hid_device_t *d)
     motor_weapon.run(RELEASE);
     motor_weapon.setSpeed(0);
     gpio_set_level(GPIO_NUM_2, 0);
+
+    uni_bluetooth_enable_new_connections_safe(true);
 }
 
 static int motor_on_device_ready(uni_hid_device_t *d)
